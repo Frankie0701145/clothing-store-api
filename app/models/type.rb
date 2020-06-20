@@ -10,5 +10,5 @@
 #
 class Type < ApplicationRecord
     validates :quantity, presence: true
-    validates :price, presence: true
+    validates :price, presence: true 
 end
