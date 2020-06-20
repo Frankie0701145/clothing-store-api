@@ -16,4 +16,5 @@ class SubType < ApplicationRecord
     validates :name, presence: true
     validates :value, presence: true
     has_and_belongs_to_many :types
+    belongs_to :product
 end
