@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_20_082537) do
+ActiveRecord::Schema.define(version: 2020_06_20_111103) do
 
   create_table "products", force: :cascade do |t|
     t.string "product_name"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 2020_06_20_082537) do
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "product_id"
+    t.index ["product_id"], name: "index_types_on_product_id"
   end
 
+  add_foreign_key "types", "products"
 end
