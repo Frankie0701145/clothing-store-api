@@ -12,5 +12,5 @@
 #  index_sub_types_on_name  (name)
 #
 class SubType < ApplicationRecord
-    validates :name, presence: true
+    validates :name, presence: true, uniqueness: true
 end
