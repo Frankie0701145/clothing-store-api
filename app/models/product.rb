@@ -13,4 +13,5 @@
 #
 class Product < ApplicationRecord
     validates :product_name, presence: true, uniqueness: { case_sensitive: false }
+    has_many :types, dependent: :destroy
 end
