@@ -14,8 +14,13 @@
 require 'test_helper'
 
 class SubTypeTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-  test "name presence validation should throw error"
+
+  def setup
+    @sub_type = SubType.new name: "Size"
+  end
+
+  test "name should be present" do
+    @sub_type.name = "  "
+    assert_not @sub_type.save
+  end
 end
