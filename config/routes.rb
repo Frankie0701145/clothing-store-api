@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get "/products/types/sub_types", to: "products#show", as: "retrieve_products"
     post "/products/:product_id", to: "products#create_types", as: "create_types"
 
-    post "/sub_types/:product_id", to: "sub_types#create", as: "add_sub_types_to_product"
+    post "/sub_types/:product_id", to: "sub_types#create"
     get "/sub_types/:product_id", to: "sub_types#show"
   
 end
