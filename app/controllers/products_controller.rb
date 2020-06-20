@@ -1,11 +1,18 @@
 class ProductsController < ApplicationController
 
     def create
+     
         #find_or_create
-        product = Product.create param[:product]
-        if product
-            sub_types = product.sub_types.create param[:sub_types]
-            render json: {data: {product: new_product, sub_types: sub_types}}, status: :ok
+        p products_sub_types_params
+        product = Product.new products_sub_types_params[:product]
+        
+        sub_types = product.sub_types.build products_sub_types_params[:sub_types]
+
+        if product.save
+            render json: {data: {product: product, sub_types: sub_types}}, status: :ok       
+        else
+            
+            render json: {data: {errors: product.errors.full_messages}}, status: :unprocessable_entity
         end
     end
 
@@ -21,7 +28,7 @@ class ProductsController < ApplicationController
             if product.nil?
                 raise ActiveRecord::RecordNotFound
             else
-                type = product.types.create!({quantity: types_params[:quantity], price: types_params[price:]});
+                type = product.types.create!({quantity: types_params[:quantity], price: types_params[:price]});
                 type.sub_types_ids = types_params[:sub_types_ids]
                 type.save!
             end
@@ -31,11 +38,14 @@ class ProductsController < ApplicationController
     end
 
     private
+
         def products_sub_types_params
-            params.permit(sub_types: [], product: {})
+            # params.permit(sub_types:[{name: :String, value: :String}], product:{})
+            params.permit!
         end
+
         def types_params
-            params.permit(sub_types_ids:[], :quantity , :price )
+            params.permit(sub_types_ids:[], quantity: :Numeric , price: :Numeric )
             # subtypesIds: []
             # quantity: integer
             #price: integer
