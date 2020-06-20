@@ -14,12 +14,18 @@ class SubTypeOptionTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup 
-    @subTypeOption = SubTypeOption.new( option: "S")
+    @sub_type_option = SubTypeOption.new( option: "S")
   end
 
   test "option should be present" do
-    @subTypeOption.option = "  "
+    @sub_type_option.option = "  "
     assert_not @subTypeOption.valid?
+  end
+
+  test "option should be unique" do 
+    duplicate_sub_type_option = @sub_type_option.dup
+    @sub_type_option.save
+    assert_not duplicate_sub_type_option.valid?
   end
 
 end
