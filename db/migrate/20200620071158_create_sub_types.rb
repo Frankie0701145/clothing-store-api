@@ -1,0 +1,10 @@
+class CreateSubTypes < ActiveRecord::Migration[6.0]
+  def change
+    create_table :sub_types do |t|
+      t.string :name
+
+      t.timestamps
+    end
+    add_index :sub_types, :name
+  end
+end
