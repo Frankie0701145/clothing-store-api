@@ -13,4 +13,13 @@ class SubTypeOptionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
+  def setup 
+    @subTypeOption = SubTypeOption.new( option: "S")
+  end
+
+  test "option should be present" do
+    @subTypeOption.option = "  "
+    assert_not @subTypeOption.valid?
+  end
+
 end
