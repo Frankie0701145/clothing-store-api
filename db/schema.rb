@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_20_153435) do
+ActiveRecord::Schema.define(version: 2020_06_20_161130) do
 
   create_table "products", force: :cascade do |t|
     t.string "product_name"
@@ -30,7 +30,9 @@ ActiveRecord::Schema.define(version: 2020_06_20_153435) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "value"
+    t.integer "product_id"
     t.index ["name"], name: "index_sub_types_on_name"
+    t.index ["product_id"], name: "index_sub_types_on_product_id"
   end
 
   create_table "sub_types_types", id: false, force: :cascade do |t|
@@ -49,5 +51,6 @@ ActiveRecord::Schema.define(version: 2020_06_20_153435) do
     t.index ["product_id"], name: "index_types_on_product_id"
   end
 
+  add_foreign_key "sub_types", "products"
   add_foreign_key "types", "products"
 end

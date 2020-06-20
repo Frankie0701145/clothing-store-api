@@ -7,10 +7,16 @@
 #  value      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  product_id :integer
 #
 # Indexes
 #
-#  index_sub_types_on_name  (name)
+#  index_sub_types_on_name        (name)
+#  index_sub_types_on_product_id  (product_id)
+#
+# Foreign Keys
+#
+#  product_id  (product_id => products.id)
 #
 require 'test_helper'
 
