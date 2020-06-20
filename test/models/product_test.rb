@@ -14,7 +14,14 @@
 require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  
+  def setup
+    @product = Product.new(product_name: "V-neck shirt")
+  end
+
+  test "product_name presence validation should reject with invalid" do
+    @product.product_name = "  "
+    assert_not @product.valid?
+  end
+
 end
