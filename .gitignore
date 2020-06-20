@@ -11,8 +11,8 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /db/*.sqlite3-*
-/db/clothing_store_development-*
-/db/clothing_store_testing-*
+db/clothing_store_development*
+db/clothing_store_testing*
 
 # Ignore all logfiles and tempfiles.
 /log/*
