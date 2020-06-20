@@ -14,5 +14,5 @@
 #
 class SubType < ApplicationRecord
     validates :name, presence: true, uniqueness: {case_sensitive: false }
-    validates :value, presence: true
+    validates :value, presence: true, uniqueness: {case_sensitive: false}
 end
