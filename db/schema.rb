@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_20_113022) do
+ActiveRecord::Schema.define(version: 2020_06_20_111103) do
 
   create_table "products", force: :cascade do |t|
     t.string "product_name"
@@ -31,13 +31,6 @@ ActiveRecord::Schema.define(version: 2020_06_20_113022) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "value"
     t.index ["name"], name: "index_sub_types_on_name"
-  end
-
-  create_table "sub_types_types", id: false, force: :cascade do |t|
-    t.integer "type_id", null: false
-    t.integer "sub_type_id", null: false
-    t.index "\"sub_types_id\"", name: "index_sub_types_types_on_sub_types_id"
-    t.index "\"types_id\"", name: "index_sub_types_types_on_types_id"
   end
 
   create_table "types", force: :cascade do |t|
