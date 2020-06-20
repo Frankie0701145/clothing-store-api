@@ -12,5 +12,5 @@
 #  index_products_on_product_name  (product_name)
 #
 class Product < ApplicationRecord
-    validates :product_name, presence: true
+    validates :product_name, presence: true, uniqueness: true
 end

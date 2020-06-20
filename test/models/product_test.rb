@@ -24,4 +24,10 @@ class ProductTest < ActiveSupport::TestCase
     assert_not @product.valid?
   end
 
+  test "product_name uniqueness should reject with invalid with same case." do
+    duplicate_product = @product.dup
+    @product.save
+    assert_not duplicate_product.valid?
+  end
+
 end
