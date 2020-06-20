@@ -7,6 +7,7 @@ class SubTypesController < ApplicationController
             #if there is no product throw error
             raise ActiveRecord::RecordNotFound
         else
+            p sub_types_params
             sub_types = product.subtypes.create sub_types_params
             render json: {data: {sub_types: sub_types}}, status: :ok
         end
