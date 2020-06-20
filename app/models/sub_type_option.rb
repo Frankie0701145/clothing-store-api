@@ -8,5 +8,5 @@
 #  updated_at :datetime         not null
 #
 class SubTypeOption < ApplicationRecord
-    validates :option, presence: true, uniqueness: true
+    validates :option, presence: true, uniqueness: {case_sensitive: false}
 end
