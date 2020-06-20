@@ -29,4 +29,10 @@ class SubTypeTest < ActiveSupport::TestCase
     @sub_type.save
     assert_not duplicate_sub_type.valid?
   end
+  test "name should be unique while disregarding case" do
+    duplicate_sub_type  = @sub_type.dup
+    duplicate_sub_type.name  = duplicate_sub_type.name.upcase
+    @sub_type.save
+    assert_not duplicate_sub_type.valid?
+  end
 end

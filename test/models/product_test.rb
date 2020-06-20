@@ -30,7 +30,7 @@ class ProductTest < ActiveSupport::TestCase
     assert_not duplicate_product.valid?
   end
 
-  test "product_name should be unique regardless of case" do
+  test "product_name should be unique while disregarding case" do
     duplicate_product = @product.dup
     duplicate_product.product_name = duplicate_product.product_name.upcase
     @product.save
