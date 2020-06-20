@@ -21,4 +21,5 @@ class Type < ApplicationRecord
     validates :quantity, presence: true
     validates :price, presence: true 
     belongs_to :product
+    has_and_belongs_to_many :sub_types
 end
