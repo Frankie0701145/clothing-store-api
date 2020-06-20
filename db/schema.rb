@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_20_074228) do
+ActiveRecord::Schema.define(version: 2020_06_20_082537) do
 
   create_table "products", force: :cascade do |t|
     t.string "product_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_name"], name: "index_products_on_product_name"
+  end
+
+  create_table "sub_type_options", force: :cascade do |t|
+    t.string "option"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "sub_types", force: :cascade do |t|
