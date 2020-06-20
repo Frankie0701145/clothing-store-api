@@ -9,4 +9,6 @@
 #  updated_at :datetime         not null
 #
 class Type < ApplicationRecord
+    validates :quantity, presence: true
+    validates :price, presence: true
 end
