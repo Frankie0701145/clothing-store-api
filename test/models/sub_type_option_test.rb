@@ -19,20 +19,21 @@ class SubTypeOptionTest < ActiveSupport::TestCase
 
   test "option should be present" do
     @sub_type_option.option = "  "
-    assert_not @sub_type_option.valid?
+    assert_not @sub_type_option.valid?, "Option should be present"
   end
 
   test "option should be unique" do 
     duplicate_sub_type_option = @sub_type_option.dup
     @sub_type_option.save
-    assert_not duplicate_sub_type_option.valid?
+    assert_not duplicate_sub_type_option.valid?, "Option should be unique"
   end
 
-  test "option should be unique while disregarding option" do
+  test "option should be unique while disregarding case" do
+    @sub_type_option.option = "Design"
     duplicate_sub_type_option = @sub_type_option.dup
     duplicate_sub_type_option.option.downcase!
     @sub_type_option.save
-    assert_not duplicate_sub_type_option.valid?
+    assert_not duplicate_sub_type_option.valid?, "Option has to be unique while disregarding case"
   end
 
 end

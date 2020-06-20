@@ -21,7 +21,7 @@ class ProductTest < ActiveSupport::TestCase
 
   test "product_name should be present" do
     @product.product_name = "  "
-    assert_not @product.valid?
+    assert_not @product.valid?, "produt_name should be present"
   end
 
   test "product_name should be unique" do
@@ -31,8 +31,9 @@ class ProductTest < ActiveSupport::TestCase
   end
 
   test "product_name should be unique while disregarding case" do
+    @product.product_name = "Dress" #use different product_name
     duplicate_product = @product.dup
-    duplicate_product.product_name = duplicate_product.product_name.upcase
+    duplicate_product.product_name.upcase!
     @product.save
     assert_not duplicate_product.valid?
   end
