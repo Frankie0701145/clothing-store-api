@@ -11,14 +11,14 @@ class SubTypesController < ApplicationController
             unless sub_types.empty?
                 render json: {data: {sub_types: sub_types}}, status: :ok
             else
-                render json: {errors: product.errors.full_messages }, status: :unprocessable_entity
+                render json: {data: {errors: product.errors.full_messages} }, status: :unprocessable_entity
             end       
         end
     end
 
     def show
         sub_types = SubType.where product_id: params[:product_id]
-        render json: {data: sub_types}, status: :ok
+        render json: {data: {sub_types: sub_types}}, status: :ok
     end
 
     private
