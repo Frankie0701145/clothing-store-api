@@ -4,6 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string
+#  value      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -16,7 +17,7 @@ require 'test_helper'
 class SubTypeTest < ActiveSupport::TestCase
 
   def setup
-    @sub_type = SubType.new name: "Size"
+    @sub_type = SubType.new name: "Size", value: "M"
   end
 
   test "name should be present" do
@@ -34,5 +35,10 @@ class SubTypeTest < ActiveSupport::TestCase
     duplicate_sub_type.name  = duplicate_sub_type.name.upcase
     @sub_type.save
     assert_not duplicate_sub_type.valid?
+  end
+
+  test "value should be present" do
+    @sub_type.value = "  "
+    assert_not @sub_type.save
   end
 end
