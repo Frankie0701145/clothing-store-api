@@ -25,19 +25,19 @@ class SubTypeTest < ActiveSupport::TestCase
     assert_not @sub_type.valid?, "Name has to be presence"
   end
 
-  test "name should be unique" do
-    duplicate_sub_type  = @sub_type.dup
-    @sub_type.save
-    assert_not duplicate_sub_type.valid?, "Name has already been taken"
-  end
+  # test "name should be unique" do
+  #   duplicate_sub_type  = @sub_type.dup
+  #   @sub_type.save
+  #   assert_not duplicate_sub_type.valid?, "Name has already been taken"
+  # end
 
-  test "name should be unique while disregarding case" do
-    @sub_type.name = "Color"
-    duplicate_sub_type  = @sub_type.dup
-    duplicate_sub_type.name  = duplicate_sub_type.name.upcase
-    @sub_type.save
-    assert_not duplicate_sub_type.valid?, "Name has already been taken"
-  end
+  # test "name should be unique while disregarding case" do
+  #   @sub_type.name = "Color"
+  #   duplicate_sub_type  = @sub_type.dup
+  #   duplicate_sub_type.name  = duplicate_sub_type.name.upcase
+  #   @sub_type.save
+  #   assert_not duplicate_sub_type.valid?, "Name has already been taken"
+  # end
 
   test "value should be present" do
     @sub_type.value = "  "
