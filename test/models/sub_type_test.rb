@@ -17,4 +17,5 @@ class SubTypeTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
+  test "name presence validation should throw error"
 end

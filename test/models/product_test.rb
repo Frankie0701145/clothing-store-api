@@ -19,18 +19,18 @@ class ProductTest < ActiveSupport::TestCase
     @product = Product.new(product_name: "V-neck shirt")
   end
 
-  test "product_name presence validation should reject with invalid" do
+  test "product_name should be present" do
     @product.product_name = "  "
     assert_not @product.valid?
   end
 
-  test "product_name uniqueness should reject with invalid with same case." do
+  test "product_name should be unique" do
     duplicate_product = @product.dup
     @product.save
     assert_not duplicate_product.valid?
   end
 
-  test "product_name uniqueness should reject with invalid of different case" do
+  test "product_name should be unique regardless of case" do
     duplicate_product = @product.dup
     duplicate_product.product_name = duplicate_product.product_name.upcase
     @product.save

@@ -14,12 +14,12 @@ class TypeTest < ActiveSupport::TestCase
   def setup 
     @type = Type.new quantity: 5, price: 100.00
   end
-  test "quantity presence validation should throw error" do
+  test "quantity should be present" do
     @type.quantity = nil;
     assert_not @type.valid?
   end
 
-  test "price presence validation should throw error" do
+  test "price should be present" do
     @type.price = nil;
     assert_not @type.valid?
   end
