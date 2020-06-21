@@ -9,25 +9,20 @@ class ProductsController < ApplicationController
         sub_types = product.sub_types.build products_sub_types_params[:sub_types]
 
         if product.save
-            render json: {data: {product: product, sub_types: sub_types}}, status: :ok       
+            product_json = product.to_json(:include=>[:sub_types])     
+            render json: product_json  
         else        
-            render json: {data: {errors: product.errors.full_messages}}, status: :unprocessable_entity
+            render json: {errors: product.errors.full_messages}, status: :unprocessable_entity
         end
     end
 
     def show
-        #retrieve products with types with subtypes
+        #retrieve products with types and subtypes
         products = Product.includes(types: :sub_types).all;
-        # p product[0].types
-        # p product[0].types[0].sub_types
-        # render :json => @programs, :include => {:insurer => {:only => :name}}, :except => [:created_at, :updated_at]
-        # render json: {data: products.to_json(:include=>[:tasks] )}, status: :ok  
-        # render json: products, include: ["types","type.sub_types"]
         products_json = products.to_json(:include=>{:types=>
                                                         {:include=> :sub_types}
                                                    })
-
-        render json: products_json                                       
+        render json: products_json, status: :ok                                       
     end
 
     def create_types
@@ -38,10 +33,12 @@ class ProductsController < ApplicationController
             type = product.types.new({quantity: types_params[:quantity], price: types_params[:price]});
             type.sub_type_ids = types_params[:sub_types_ids]
             if product.save
-                render json: {data: {product: product}}, status: :ok
+                product_json = product.to_json(:include=>{:types=>
+                                                                 {:include=> :sub_types}
+                                                             })
+                render json: product_json, status: :ok
             else
-                p product.errors.full_messages
-                render json: {data: {errors: product.errors.full_messages}}, status: :unprocessable_entity
+                render json: {errors: product.errors.full_messages}, status: :unprocessable_entity
             end
         end
     end
