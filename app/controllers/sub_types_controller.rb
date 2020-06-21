@@ -22,7 +22,7 @@ class SubTypesController < ApplicationController
     end
 
     private
-        def sub_types_params
-          params.permit!
+        def sub_types_params   
+            params.require(:sub_types).permit(:product_id, sub_types: [[:name, :value]])
         end
 end
