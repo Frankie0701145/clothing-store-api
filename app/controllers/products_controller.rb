@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
 
     def create
         #instantiate a product
-        product = Product.new products_sub_types_params[:product]
+        product = Product.new product_name: products_sub_types_params[:product_name]
+        p products_sub_types_params
         #build a sub_types
         sub_types = product.sub_types.build products_sub_types_params[:sub_types]
         #save
@@ -46,7 +47,7 @@ class ProductsController < ApplicationController
     private
 
         def products_sub_types_params
-            params.permit!
+            params.require(:product).permit( :product_name, sub_types:[[:name, :value]] )
         end
 
         def types_params
